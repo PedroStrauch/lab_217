@@ -4,14 +4,14 @@ Guia para usar as ferramentas instaladas:
         programa de terminal para rodar verilog
 
         compilando:
-            iverilog nome_saida.vvp nome_entrada.v
+            iverilog -o nome_saida.vvp nome_entrada.v
             #ou, para test benches,
             iverilog nome_saida.vcd nome_entrada.v
 
         rodando:
-            vpp arquivo.vpp
+            vvp arquivo.vvp
             #ou
-            vpp arquivo.vcd
+            vvp arquivo.vcd
 
         waveform:
             gtkwave
