@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1784304731" />
+    <testcase name="my_first_test" classname="tb" file="C:\Users\Pedro\Desktop\ECP\lab217\tb.py" lineno="13" time="0.007427692413330078" sim_time_ns="40.0" ratio_time="5385.252616036464" />
+  </testsuite>
+</testsuites>
