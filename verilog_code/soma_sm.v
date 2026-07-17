@@ -1,5 +1,5 @@
 module soma_sm(num1, num2, s);
-	parameter W = 4;
+	parameter W = 8;
 	
 	input [W-1:0] num1, num2;
 	output [W:0] s;
