@@ -18,3 +18,7 @@ Guia para usar as ferramentas instaladas:
 
     cocotb:
         make no terminal da anaconda
+
+    drum
+    dadda multiplier unsigned and signed
+    Baugh-Wooley unsigned and signed
