@@ -2,7 +2,7 @@ import cocotb
 from cocotb.types import LogicArray
 
 def int_to_sm(num, w):
-    if(num > 0):
+    if(num >= 0):
         return LogicArray.from_unsigned(num, w)
     else:
         n = (-1)*num + 2**(w-1)

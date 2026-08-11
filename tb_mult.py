@@ -3,7 +3,7 @@ from cocotb.triggers import Timer
 from ops_sm import int_to_sm, sm_to_int
 
 #def contante
-W = 4
+W = 8
 
 @cocotb.test()
 async def teste1(dut):
@@ -16,11 +16,11 @@ async def teste1(dut):
         dados.append(x.split(' '))
 
     for x in dados:
-        dut.num1.value = int_to_sm(int(x[0]), W)
-        dut.num2.value = int_to_sm(int(x[1]), W)
+        dut.n1.value = int_to_sm(int(x[0]), W)
+        dut.n2.value = int_to_sm(int(x[1]), W)
         await Timer(10, unit="ns")
-        cocotb.log.info("%d * %d = %d", int(x[0]), int(x[1]), sm_to_int(dut.s.value))
-        cocotb.log.info("%s * %s = %s", int_to_sm(int(x[0]), W), int_to_sm(int(x[1]), W), dut.s.value)
+        cocotb.log.info("%d * %d = %d", int(x[0]), int(x[1]), sm_to_int(dut.out.value))
+        cocotb.log.info("%s * %s = %s", int_to_sm(int(x[0]), W), int_to_sm(int(x[1]), W), dut.out.value)
         
         cocotb.log.info("%s", int_to_sm(int(x[2]), 2*W))
-        assert dut.s.value == int_to_sm(int(x[2]), 2*W)
+        assert dut.out.value == int_to_sm(int(x[2]), 2*W)

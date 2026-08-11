@@ -1,6 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1784310385" />
-    <testcase name="teste1" classname="tb_mac" file="C:\Users\Pedro\Desktop\ECP\lab217\tb_mac.py" lineno="9" time="0.00656890869140625" sim_time_ns="4010.0" ratio_time="610451.475029036" />
+    <property name="random_seed" value="1786474600" />
+    <testcase name="teste1" classname="tb_mult" file="/home/pedrofleury/projetos/macs/MACs_217/tb_mult.py" lineno="8" time="0.003726482391357422" sim_time_ns="40.0" ratio_time="10733.983365323096">
+      <failure error_type="AssertionError" error_msg="" />
+    </testcase>
   </testsuite>
 </testsuites>
