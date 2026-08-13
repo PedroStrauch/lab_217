@@ -14,3 +14,21 @@ module ha(a, b, s, cout);
     assign cout = a & b;
 
 endmodule
+
+module wc(a, b, c, d, s, cout);
+    input a, b, c, d;
+    output s, cout;
+    wire fio;
+
+    assign fio = a & b;
+    fa soma(fio, c, d, s, cout);
+endmodule
+
+module gc(a, b, c, d, s, cout);
+    input a, b, c, d;
+    output s, cout;
+    wire fio;
+
+    assign fio = ~(a & b);
+    fa soma(fio, c, d, s, cout);
+endmodule
