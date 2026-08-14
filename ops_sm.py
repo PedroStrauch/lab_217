@@ -13,3 +13,9 @@ def sm_to_int(a: LogicArray):
         return (-1)*LogicArray.to_unsigned(a[(a.__len__()) -2: 0])
     else:
         return LogicArray.to_unsigned(a)
+    
+def int_to_c2(num, w):  
+    return LogicArray.from_signed(num, w)
+
+def c2_to_int(a: LogicArray):
+    return LogicArray.to_signed(a)
