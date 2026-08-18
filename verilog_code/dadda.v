@@ -1,18 +1,21 @@
 module dadda_8bits(n1, n2, out);
+
     input [7:0] n1, n2;
     output [15:0] out;
+    
     wire [63:0] c0;
     wire [11:0] c1;
     wire [27:0] c2;
     wire [19:0] c3;
     wire [23:0] c4;
-    wire [15:0] c5;
+    wire [12:0] c5;
+
     genvar i, j;
 
     generate
-        for(i = 0; i < 8; i = i+1)
+        for(i = 0; i < 8; i = i + 1)
         begin: ands_n1
-            for(j = 0; j < 8; j = j+1)
+            for(j = 0; j < 8; j = j + 1)
             begin: ands_n2
                 assign c0[(j*8)+i] = n1[i] & n2[j]; 
             end
