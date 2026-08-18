@@ -16,6 +16,18 @@ class Adder:
         inout += f"c{o[1][0]}[{o[1][1]}]"
         inout += ");\n"
         return "\t" + self.type + f" p{c+1}_{n+1}" + inout
+
+
+def txt_out(n, a, c, w):
+    if(n == 0):
+        return f"\tha p{c+1}_1(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], out[1], c{c+1}[0]);\n"
+    elif(n != w*2-3):
+        return f"\tfa p{c+1}_{n+1}(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], c{c+1}[{n}]);\n"
+    else:
+        return f"\tfa p{c+1}_{n+1}(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], out[{n+2}]);\n"
+        
+    
+
         
 
 def main():
@@ -76,10 +88,7 @@ def main():
         arq.write(f"\twire [{2*len(adder_list[c])-1}:0] c{c+1};\n")
     arq.write(f"\twire [{2*w-4}:0] c{len(d)+1};\n\n")
 
-    ######
-    ####IMPORTANTE: TERMINAR O BLOCO DO GENERATE######
-    ######
-    arq.write(f"\tgenvar i, j;\n\n\tgenerate\n\t\tfor(i = 0; i < {w}; i = i + 1)\n\t\tbegin: ")
+    arq.write(f"\tgenvar i, j;\n\n\tgenerate\n\t\tfor(i = 0; i < {w}; i = i + 1)\n\t\tbegin: ands_n1\n\t\t\tfor(j = 0; j < {w}; j = j + 1)\n\t\t\tbegin: ands_n2\n\t\t\t\tassign c0[(j*{w})+i] = n1[i] & n2[j];\n\t\t\tend\n\t\tend\n\tendgenerate\n\n")
 
     for c in range(len(d)):
         arq.write(f"\t//camada {c+1} de somadores\n")
@@ -87,6 +96,11 @@ def main():
             arq.write(s.txt(c, i))
         arq.write("\n")
 
+    arq.write("\t//camada final de somadores\n")
+    arq.write("\tassign out[0] = c0[0];\n")
+    soma.pop(0)
+    for i, a in enumerate(soma):
+        arq.write(f"{txt_out(i, a, len(d), w)}")
     arq.write("\nendmodule")
     arq.close()
 
