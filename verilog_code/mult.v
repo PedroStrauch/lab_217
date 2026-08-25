@@ -1,11 +1,10 @@
-module mult_sm(num1, num2, s);
-	parameter W = 4;
+module mult_sm(n1, n2, s);
+	parameter w = 8;
 	
-	input [W-1:0] num1, num2;
-	output [(2*W)-1:0] s;
-	wire [(2*W)-2:0] mul;
+	input [w-1:0] n1, n2;
+	output [(2*w)-1:0] s;
+	wire [(2*w)-3:0] mul;
 	
-	assign mul = num1[W-2:0] * num2[W-2:0];
-	
-	assign s = {num1[W-1]^num2[W-1], mul};
+	dadda_7bits m(n1[w-2:0], n2[w-2:0], mul);
+	assign s = {n1[w-1]^n2[w-1],1'b0, mul};
 endmodule

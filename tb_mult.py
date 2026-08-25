@@ -1,12 +1,13 @@
 import cocotb
 from cocotb.triggers import Timer
-from ops_sm import int_to_sm, sm_to_int
+from ops_sm import int_to_bin, bin_to_int
 
 #def contante
-W = 8
+W = 16
 
 @cocotb.test()
 async def teste1(dut):
+    c2 = 0
     arq = open('db_mult.txt')
     txt = arq.read()
     arq.close()
@@ -16,11 +17,11 @@ async def teste1(dut):
         dados.append(x.split(' '))
 
     for x in dados:
-        dut.n1.value = int_to_sm(int(x[0]), W)
-        dut.n2.value = int_to_sm(int(x[1]), W)
+        dut.n1.value = int_to_bin(int(x[0]), W, c2)
+        dut.n2.value = int_to_bin(int(x[1]), W, c2)
         await Timer(10, unit="ns")
-        cocotb.log.info("%d * %d = %d", int(x[0]), int(x[1]), sm_to_int(dut.out.value))
-        cocotb.log.info("%s * %s = %s", int_to_sm(int(x[0]), W), int_to_sm(int(x[1]), W), dut.out.value)
-        
-        cocotb.log.info("%s", int_to_sm(int(x[2]), 2*W))
-        assert dut.out.value == int_to_sm(int(x[2]), 2*W)
+        cocotb.log.info("%d * %d = %d", int(x[0]), int(x[1]), bin_to_int(dut.out.value, c2))
+        cocotb.log.info("%s * %s = %s", int_to_bin(int(x[0]), W, c2), int_to_bin(int(x[1]), W, c2), dut.out.value)
+        r = int(x[0])*int(x[1])
+        cocotb.log.info("%s", int_to_bin(r, 2*W, c2))
+        assert dut.out.value == int_to_bin(r, 2*W, c2)
