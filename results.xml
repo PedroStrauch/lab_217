@@ -1,6 +1,6 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1787680029" />
-    <testcase name="teste1" classname="tb_mac" file="/home/pedrofleury/projetos/macs/MACs_217/tb_mac.py" lineno="9" time="0.010951042175292969" sim_time_ns="14010.0" ratio_time="1279330.2934773143" />
+    <property name="random_seed" value="1787851400" />
+    <testcase name="teste1" classname="tb_mult" file="/home/pedrofleury/projetos/macs/MACs_217/tb_mult.py" lineno="9" time="0.0030066967010498047" sim_time_ns="80.0" ratio_time="26607.273015621282" />
   </testsuite>
 </testsuites>

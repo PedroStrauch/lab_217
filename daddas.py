@@ -10,7 +10,7 @@ class Adder:
     def txt(self, c, n):
         inout = "("
         for i in self.inputs:
-            inout += f"c{i[0]}[{i[1]}], "
+            inout += f"{i[0]}[{i[1]}], "
         o = self.outputs
         inout += f"c{o[0][0]}[{o[0][1]}], "
         inout += f"c{o[1][0]}[{o[1][1]}]"
@@ -20,11 +20,11 @@ class Adder:
 
 def txt_out(n, a, c, w):
     if(n == 0):
-        return f"\tha p{c+1}_1(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], out[1], c{c+1}[0]);\n"
-    elif(n != w-3):
-        return f"\tfa p{c+1}_{n+1}(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], c{c+1}[{n}]);\n"
+        return f"\tha p{c+1}_1({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], out[1], c{c+1}[0]);\n"
+    elif(n != w-2):
+        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], c{c+1}[{n}]);\n"
     else:
-        return f"\tfa p{c+1}_{n+1}(c{a[0][0]}[{a[0][1]}], c{a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], out[{n+2}]);\n"
+        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], out[{n+2}]);\n"
         
     
 
@@ -45,7 +45,7 @@ def main():
     #Descobre o di inicial do algorítmo
     d = []
     d_prox = 2
-    while(d_prox < w2):
+    while(d_prox < w2+1):
         d.append(d_prox)
         d_prox = floor(d_prox*1.5)
     d.reverse()
@@ -53,11 +53,13 @@ def main():
 
     #cria a "piramide" de soma
     soma = []
+    for k in range(w1+w2):
+        soma.append(deque([]))
+        soma[k].append((f"ns", k))
+
     for i in range(w2):
         for j in range(w1):
-            if j+i >= len(soma):
-                soma.append(deque([]))
-            soma[i+j].append((0, i*w1+j))
+            soma[i+j].append(("c0", i*w1+j))
             #print(i*w2+j)
     #print(soma)
     
@@ -75,7 +77,7 @@ def main():
                     inp.append(col.popleft())
                     a.append(Adder("ha", inp, [(i+1, c), (i+1, c+1)]))
                     col.append((i+1, c))
-                    soma[j+1].append((i+1, c+1))
+                    soma[j+1].append((f"c{i+1}", c+1))
                     c+=2
                 else:
                     inp = []
@@ -84,14 +86,14 @@ def main():
                     inp.append(col.popleft())
                     a.append(Adder("fa", inp, [(i+1, c), (i+1, c+1)]))
                     col.append((i+1, c))
-                    soma[j+1].append((i+1, c+1))
+                    soma[j+1].append((f"c{i+1}", c+1))
                     c+=2
         adder_list.append(a)
     #print(soma)
 
     #creates the file and writes the verilog code  
-    arq = open(f"verilog_code/dadda_{w1}x{w2}bits.v", "w")
-    arq.write(f"module dadda_{w1}x{w2}bits(n1, n2, out);\n\n\tinput [{w1-1}:0] n1;\n\tinput [{w2-1}:0] n2;\n\toutput [{w1+w2-1}:0] out;\n")
+    arq = open(f"verilog_code/dadda_s_{w1}x{w2}bits.v", "w")
+    arq.write(f"module dadda_{w1}x{w2}bits(n1, n2, ns, out);\n\n\tinput [{w1-1}:0] n1;\n\tinput [{w2-1}:0] n2;\n\tinput [{w1+w2-1}:0] ns;\n\toutput [{w1+w2}:0] out;\n")
 
     arq.write(f"\n\twire [{w1*w2-1}:0] c0;\n")
     for c in range(len(d)):
