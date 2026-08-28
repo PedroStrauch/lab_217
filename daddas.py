@@ -20,11 +20,11 @@ class Adder:
 
 def txt_out(n, a, c, w):
     if(n == 0):
-        return f"\tha p{c+1}_1({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], out[1], c{c+1}[0]);\n"
-    elif(n != w-2):
-        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], c{c+1}[{n}]);\n"
+        return f"\tha p{c+1}_1({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], out[0], c{c+1}[0]);\n"
+    elif(n != w-1):
+        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n}], c{c+1}[{n}]);\n"
     else:
-        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n+1}], out[{n+2}]);\n"
+        return f"\tfa p{c+1}_{n+1}({a[0][0]}[{a[0][1]}], {a[1][0]}[{a[1][1]}], c{c+1}[{n-1}], out[{n}], c);\n"
         
     
 
@@ -76,7 +76,7 @@ def main():
                     inp.append(col.popleft())
                     inp.append(col.popleft())
                     a.append(Adder("ha", inp, [(i+1, c), (i+1, c+1)]))
-                    col.append((i+1, c))
+                    col.append((f"c{i+1}", c))
                     soma[j+1].append((f"c{i+1}", c+1))
                     c+=2
                 else:
@@ -85,7 +85,7 @@ def main():
                     inp.append(col.popleft())
                     inp.append(col.popleft())
                     a.append(Adder("fa", inp, [(i+1, c), (i+1, c+1)]))
-                    col.append((i+1, c))
+                    col.append((f"c{i+1}", c))
                     soma[j+1].append((f"c{i+1}", c+1))
                     c+=2
         adder_list.append(a)
@@ -93,12 +93,12 @@ def main():
 
     #creates the file and writes the verilog code  
     arq = open(f"verilog_code/dadda_s_{w1}x{w2}bits.v", "w")
-    arq.write(f"module dadda_{w1}x{w2}bits(n1, n2, ns, out);\n\n\tinput [{w1-1}:0] n1;\n\tinput [{w2-1}:0] n2;\n\tinput [{w1+w2-1}:0] ns;\n\toutput [{w1+w2}:0] out;\n")
+    arq.write(f"module dadda_s_{w1}x{w2}bits(n1, n2, ns, out, c);\n\n\tinput [{w1-1}:0] n1;\n\tinput [{w2-1}:0] n2;\n\tinput [{w1+w2-1}:0] ns;\n\toutput [{w1+w2-1}:0] out;\n\toutput c;\n")
 
     arq.write(f"\n\twire [{w1*w2-1}:0] c0;\n")
     for c in range(len(d)):
         arq.write(f"\twire [{2*len(adder_list[c])-1}:0] c{c+1};\n")
-    arq.write(f"\twire [{w1+w2-4}:0] c{len(d)+1};\n\n")
+    arq.write(f"\twire [{w1+w2-2}:0] c{len(d)+1};\n\n")
 
     arq.write(f"\tgenvar i, j;\n\n\tgenerate\n\t\tfor(i = 0; i < {w1}; i = i + 1)\n\t\tbegin: ands_n1\n\t\t\tfor(j = 0; j < {w2}; j = j + 1)\n\t\t\tbegin: ands_n2\n\t\t\t\tassign c0[(j*{w1})+i] = n1[i] & n2[j];\n\t\t\tend\n\t\tend\n\tendgenerate\n\n")
 
@@ -109,8 +109,7 @@ def main():
         arq.write("\n")
 
     arq.write("\t//camada final de somadores\n")
-    arq.write("\tassign out[0] = c0[0];\n")
-    soma.pop(0)
+
     for i, a in enumerate(soma):
         arq.write(f"{txt_out(i, a, len(d), w1+w2)}")
     arq.write("\nendmodule")

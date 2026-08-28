@@ -32,6 +32,7 @@ async def teste1(dut):
         await Timer(10, unit="ns")
         await RisingEdge(dut.clk)
         await Timer(10, unit="ns")
-        cocotb.log.info("%d : %d", mac, bin_to_int(dut.s.value, 1))
-        assert dut.s.value == int_to_bin(mac, 2*W, 1)
+        cocotb.log.info("%d - %d", bin_to_int(dut.rp.value, 0), bin_to_int(dut.rn.value, 0))
+        cocotb.log.info("%d : %d", mac, bin_to_int(dut.out.value, 1))
+        assert dut.out.value == int_to_bin(mac, 2*W, 1)
 

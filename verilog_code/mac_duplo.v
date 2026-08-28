@@ -13,7 +13,7 @@ module mac(clk, en, rst, n1, n2, s);
     assign soma_n = rn + {1'b0, mult[w1+w2-2:0]};
     
     mult_sm m(n1, n2, mult);
-    always @(posedge clk, posedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if(rst)
         begin
             rp <= 0;
