@@ -1,8 +1,8 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
-    <property name="random_seed" value="1787934421" />
-    <testcase name="teste1" classname="tb_mac" file="/home/pedrofleury/projetos/macs/MACs_217/tb_mac.py" lineno="9" time="0.01255345344543457" sim_time_ns="13010.0" ratio_time="1036368.2039010123">
-      <failure error_type="AssertionError" error_msg="" />
+    <property name="random_seed" value="1789753524" />
+    <testcase name="teste1" classname="tb_mult" file="/home/pedrofleury/projetos/macs/MACs_217/tb_mult.py" lineno="9" time="0.0017156600952148438" sim_time_ns="10.0" ratio_time="5828.660366870484">
+      <failure error_type="ValueError" error_msg="Can't convert LogicArray to int: it contains non-0/1 values" />
     </testcase>
   </testsuite>
 </testsuites>

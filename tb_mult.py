@@ -8,7 +8,7 @@ w2 = 3
 
 @cocotb.test()
 async def teste1(dut):
-    c2 = 0
+    c2 = 1
     arq = open('db_mult.txt')
     txt = arq.read()
     arq.close()
@@ -24,6 +24,7 @@ async def teste1(dut):
         dut.n1.value = int_to_bin(int(x[0]), w1, c2)
         dut.n2.value = int_to_bin(int(x[1]), w2, c2)
         await Timer(10, unit="ns")
+        cocotb.log.info("out = %s\n", dut.out.value)
         cocotb.log.info("%d * %d = %d", int(x[0]), int(x[1]), bin_to_int(dut.out.value, c2))
         cocotb.log.info("%s * %s = %s", int_to_bin(int(x[0]), w1, c2), int_to_bin(int(x[1]), w2, c2), dut.out.value)
         r = int(x[0])*int(x[1])

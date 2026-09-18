@@ -17,7 +17,7 @@ module bw(n1, n2, out);
         begin: bloco_wc
             for(j = 0; j < w-1; j = j+1)
             begin: linha_wc
-                wc b(n1[i], n2[j], d[i*w+j], c[i*w+j], d[(i+1)*w+j-1], c[(i+1)*w+j]);
+                wc b(n1[i], n2[j], d[i*w+j], c[i*w+j],d[(i +1)*w+j-1], c[(i+1)*w+j]);
             end
             gc eg(n1[i], n2[w-1], c[i*w+w-1], 1'b0, d[(i+1)*w+w-2], c[(i+1)*w+w-1]);
         end
