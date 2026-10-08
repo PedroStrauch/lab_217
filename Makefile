@@ -4,12 +4,12 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
-VERILOG_SOURCES += $(PWD)/verilog_code/dadda_16bits.v
 VERILOG_SOURCES += $(PWD)/verilog_code/add.v
+VERILOG_SOURCES += $(PWD)/verilog_code/BaughWooleyV2.v
 # use VHDL_SOURCES for VHDL files
 
 # COCOTB_TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-COCOTB_TOPLEVEL = dadda_16bits
+COCOTB_TOPLEVEL = bw2
 
 # COCOTB_TEST_MODULES is the basename of the Python test file(s)
 COCOTB_TEST_MODULES = tb_mult

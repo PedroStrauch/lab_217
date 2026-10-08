@@ -53,13 +53,14 @@ def main():
 
     #cria a "piramide" de soma
     soma = []
-    for i in range(w1):
-        for j in range(w2):
+    for i in range(w2):
+        for j in range(w1):
             if j+i >= len(soma):
                 soma.append(deque([]))
             soma[i+j].append((0, i*w1+j))
+            #print(i*w2+j)
     #print(soma)
-
+    
     #determina quantos adders vão ter em cada camada e suas caraceristicas
     adder_list = []
     for i, di in enumerate(d):
@@ -89,7 +90,7 @@ def main():
     #print(soma)
 
     #creates the file and writes the verilog code  
-    arq = open(f"dadda_{w1}x{w2}bits.v", "w")
+    arq = open(f"verilog_code/dadda_{w1}x{w2}bits.v", "w")
     arq.write(f"module dadda_{w1}x{w2}bits(n1, n2, out);\n\n\tinput [{w1-1}:0] n1;\n\tinput [{w2-1}:0] n2;\n\toutput [{w1+w2-1}:0] out;\n")
 
     arq.write(f"\n\twire [{w1*w2-1}:0] c0;\n")
