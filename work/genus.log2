@@ -1,0 +1,135 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2026 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:50:47.247217] Configured Lic search path (23.02-s006): 5280@pgmicro01.ufrgs.br
+
+Version: 23.18-s043_1, built Mon Jul 13 20:16:36 PDT 2026
+Options: 
+Date:    Tue Nov 10 15:50:47 2026
+Host:    cadmicro-el8-04.inf.ufrgs.br (x86_64 w/Linux 4.18.0-553.184.1.el8_10.x86_64) (32cores*64cpus*2physical cpus*QEMU Virtual CPU version 2.5+ 16384KB) (330128252KB)
+PID:     2151127
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[15:50:47.172544] Periodic Lic check successful
+[15:50:47.696848] Feature usage summary:
+[15:50:47.696849] Genus_Synthesis
+License checkout complete (0 seconds elapsed).
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (10 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (34 seconds elapsed).
+
+@genus:root: 1> source setup.tcl
+File 'setup.tcl' does not exist.
+@genus:root: 2> source ../scripts/setup.tcl
+Sourcing '../scripts/setup.tcl' (Tue Nov 10 15:51:56 -03 2026)...
+#@ Begin verbose source ../scripts/setup.tcl
+@file(setup.tcl) 4: set DESIGN mac
+@file(setup.tcl) 5: set DATE [clock format [clock seconds] -format "%b%d-%T"]
+@file(setup.tcl) 6: set _OUTPUTS_PATH ../outputs
+@file(setup.tcl) 7: set _REPORTS_PATH ../reports
+@file(setup.tcl) 8: set _LOGS_PATH    ../logs
+@file(setup.tcl) 10: set RTL_PATH ../verilog_code
+@file(setup.tcl) 12: set CONSTR_PATH ../constr
+@file(setup.tcl) 18: read_libs { 
+	/pdk/skywater/sky130/sram22_sky130_macros/sram22_64x24m4w8/sram22_64x24m4w8_tt_025C_1v80.lib
+}
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sram22_64x24m4w8_tt_025C_1v80.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+#@ End verbose source ../scripts/setup.tcl
+@genus:root: 3> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:52:39 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+@file(syn.tcl) 14: set rtl_files {mac_dv2 dadda_s_7x7bits add}
+@file(syn.tcl) 17: set path "../verilog_code"
+@file(syn.tcl) 20: set full_paths {}
+@file(syn.tcl) 21: foreach f $rtl_files {
+    lappend full_paths "$path/$f.v"
+}
+@file(syn.tcl) 26: read_hdl $full_paths
+@file(syn.tcl) 29: elaborate $DESIGN mac
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mac'.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+
+Fatal internal error, code 2f696364-2f72632f-3707
+
+Dumping stack trace (tid:7f9c473a6940/main thread).
+
+Operating System: linux
+Product Version: 23.18-s043_1
+Build Date: Jul 14 2026 00:16:36
+Executable: /tools/cadence/DDIEXPORT23/GENUS231/tools.lnx86/synth/bin/64bit/genus
+Startup Options: no options specified
+Current Directory: /home/pedro.fleury/FLP/gpdk180_workspace/lab_217/work
+Stack trace:
+Thread 3 (Thread 0x7f9c396f3700 (LWP 2151204)):
+#0  0x00007f9c50238b51 in poll () from /lib64/libc.so.6
+#1  0x000000000a6e7a6e in RedirectOutputHelperThread::helper_thread(bool) ()
+#2  0x000000000a776e1c in create_head(void*) ()
+#3  0x00007f9c557161ca in start_thread () from /lib64/libpthread.so.0
+#4  0x00007f9c502457d3 in clone () from /lib64/libc.so.6
+Thread 2 (Thread 0x7f9c44cb4700 (LWP 2151145)):
+#0  0x00007f9c5571fe20 in nanosleep () from /lib64/libpthread.so.0
+#1  0x0000000009e94561 in lic_recheck(void*) ()
+#2  0x000000000a776e1c in create_head(void*) ()
+#3  0x00007f9c557161ca in start_thread () from /lib64/libpthread.so.0
+#4  0x00007f9c502457d3 in clone () from /lib64/libc.so.6
+Thread 1 (Thread 0x7f9c473a6940 (LWP 2151127)):
+#0  0x00007f9c55720312 in waitpid () from /lib64/libpthread.so.0
+#1  0x000000000a777d39 in pstack_stacktrace(int, _IO_FILE*) ()
+#2  0x000000000a778743 in dump_stack_trace_low(_IO_FILE*, _IO_FILE*, unsigned long*, bool, bool) ()
+#3  0x000000000a77a4cb in sig_exit(int) ()
+#4  0x000000000a77afca in fatal_info(char*, int) ()
+#5  0x00000000013803a5 in c2g_create_gdef(DfGraph*, GBI::Gdef*&, char*&, Hasht*) ()
+#6  0x000000000138cc09 in c2g_process_graph(DfGraph*, unsigned long&, long long&, int) ()
+#7  0x000000000149a86d in XfmDfGraph::allocateDesign() ()
+#8  0x000000000171a554 in HptDfGraph::allocateDesigns() ()
+#9  0x000000000171d5ab in HptDfGraph::processDesign(HPTStruct*, HPTStruct*, Hasht*, HPTStruct*) [clone .part.0] ()
+#10 0x000000000171e004 in HptDatabase::processDesign(HPTStruct*, bool, Ident const&, bool, Hasht*, HptDfGraph*, char const*, bool) ()
+#11 0x00000000017209bb in HptDatabase::processDesigns(Ident const&, int, int, int, int, int, int, Ident const&, int, Ident const&, char const*, DList*, DList*, int, Hasht*) ()
+#12 0x0000000001847101 in hls_elaborate_one_design(Ident&, bool, char const*, DList*, DList*, bool&, Hasht*, bool) [clone .constprop.0] ()
+#13 0x00000000018575c9 in hls_elaborate(LList*, char const*, DList*, DList*, bool&, bool) ()
+#14 0x0000000001844739 in elaborate_cmd(void*, Tcl_Interp*, int, Tcl_Obj* const*) ()
+#15 0x000000000a245f3a in rc_cmd(void*, Tcl_Interp*, int, Tcl_Obj* const*) ()
+#16 0x0000000009f83128 in Tcl_EvalObjEx ()
+#17 0x000000000a02f9c4 in Tcl_RecordAndEvalObj ()
+#18 0x000000000a02fb4d in Tcl_RecordAndEval ()
+#19 0x000000000a376b41 in cleUtil::rcEditCmdLineEnd(char*) ()
+#20 0x000000000a385fed in RC_Console::cleMode::DoExecute(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, void*) ()
+#21 0x000000000a36c630 in RC_Redline::EmacsMode::AcceptLine() ()
+#22 0x000000000a370f54 in RC_Redline::ModeCommand<RC_Redline::EmacsMode>::CommandFnNoKeys(boost::function<void (RC_Redline::EmacsMode&)> const&, RC_Redline::Editor&) ()
+#23 0x000000000a374a12 in boost::detail::function::void_function_obj_invoker2<boost::_bi::bind_t<boost::_bi::unspecified, boost::function<void (RC_Redline::Editor&)>, boost::_bi::list1<boost::arg<1> > >, void, RC_Redline::Editor&, RC_Redline::KeyCombination const&>::invoke(boost::detail::function::function_buffer&, RC_Redline::Editor&, RC_Redline::KeyCombination const&) ()
+#24 0x000000000a373bd3 in RC_Redline::Command::Run(RC_Redline::Editor&, RC_Redline::KeyCombination const&) const ()
+#25 0x000000000a373445 in RC_Redline::Editor::Internals::Run(bool) ()
+#26 0x000000000a0bb1de in FileHandlerEventProc ()
+#27 0x000000000a05bfc1 in Tcl_ServiceEvent ()
+#28 0x000000000a05c2e4 in Tcl_DoOneEvent ()
+#29 0x000000000a056211 in Tcl_MainEx ()
+#30 0x000000000080469c in main ()
+
+Abnormal exit.

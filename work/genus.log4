@@ -1,0 +1,129 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2026 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[16:19:57.247273] Configured Lic search path (23.02-s006): 5280@pgmicro01.ufrgs.br
+
+Version: 23.18-s043_1, built Mon Jul 13 20:16:36 PDT 2026
+Options: 
+Date:    Tue Nov 10 16:19:57 2026
+Host:    cadmicro-el8-04.inf.ufrgs.br (x86_64 w/Linux 4.18.0-553.184.1.el8_10.x86_64) (32cores*64cpus*2physical cpus*QEMU Virtual CPU version 2.5+ 16384KB) (330128252KB)
+PID:     2160879
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[16:19:57.394985] Periodic Lic check successful
+[16:19:57.919283] Feature usage summary:
+[16:19:57.919283] Genus_Synthesis
+License checkout complete (0 seconds elapsed).
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (9 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (34 seconds elapsed).
+
+@genus:root: 1> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 16:22:14 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+#@ End verbose source ../scripts/syn.tcl
+can't read "_LOGS_PATH": no such variable
+@genus:root: 2> source ../scripts/setup.tcl
+Sourcing '../scripts/setup.tcl' (Tue Nov 10 16:23:11 -03 2026)...
+#@ Begin verbose source ../scripts/setup.tcl
+@file(setup.tcl) 4: set DESIGN mac
+@file(setup.tcl) 5: set DATE [clock format [clock seconds] -format "%b%d-%T"]
+@file(setup.tcl) 6: set _OUTPUTS_PATH ../outputs
+@file(setup.tcl) 7: set _REPORTS_PATH ../reports
+@file(setup.tcl) 8: set _LOGS_PATH    ../logs
+@file(setup.tcl) 10: set RTL_PATH ../verilog_code
+@file(setup.tcl) 12: set CONSTR_PATH ../constr
+@file(setup.tcl) 18: read_libs { 
+	/pdk/skywater/sky130/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_100C_1v65.lib
+	/pdk/skywater/sky130/sky130A/libs.ref/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_tt_tt_025C_1v80_3v30.lib
+	/pdk/skywater/sky130/sky130A/libs.ref/sky130_fd_sc_hdll/lib/sky130_fd_sc_hdll__ff_100C_1v65.lib
+}
+Warning : An attribute is used before it is defined. [LBR-511]
+        : The library level attribute default_operating_conditions on line 4765 is defined after at least one cell definition. The attribute will be ignored. (File /pdk/skywater/sky130/sky130A/libs.ref/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_tt_tt_025C_1v80_3v30.lib)
+
+  Message Summary for Library all 3 libraries:
+  ********************************************
+  Missing a function attribute in the output pin definition. [LBR-518]: 14
+  An attribute is used before it is defined. [LBR-511]: 1
+  An unsupported construct was detected in this library. [LBR-40]: 33
+  ********************************************
+ 
+Warning : Libraries have inconsistent nominal operating conditions. In the Liberty library, there are attributes called nom_voltage, nom_process and nom_temperature. Genus reports the message, if the respective values of the 2 given .libs differ. [LBR-38]
+        : The libraries are 'sky130_fd_sc_hd__ff_100C_1v65' and 'sky130_ef_io__gpiov2_pad_tt_tt_025C_1v80_3v30'.
+        : This is a common source of delay calculation confusion and should be avoided.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.650000, 100.000000) in library 'sky130_fd_sc_hd__ff_100C_1v65.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sky130_ef_io__gpiov2_pad_tt_tt_025C_1v80_3v30.lib'.
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.650000, 100.000000) in library 'sky130_fd_sc_hdll__ff_100C_1v65.lib'.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_12' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hdll__diode_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'LBR-9'.
+#@ End verbose source ../scripts/setup.tcl
+@genus:root: 3> exit
+
+Lic Summary:
+[16:23:53.279649] Cdslmd servers: licencas
+[16:23:53.279665] Feature usage summary:
+[16:23:53.279666] Genus_Synthesis
+
+Normal exit.

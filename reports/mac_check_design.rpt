@@ -1,0 +1,21 @@
+
+ 	 Check Design Report (c)
+	 ------------------- 
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'mac'
+
+No empty modules in design 'mac'
+
+ Undriven Port(s)/Pin(s)
+ ------------------------
+No undriven combinational pin in 'mac'
+
+No undriven sequential pin in 'mac'
+
+No undriven hierarchical pin in 'mac'
+
+No undriven port in 'mac'
+
+  Done Checking the design.
