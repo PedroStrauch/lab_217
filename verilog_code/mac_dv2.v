@@ -22,10 +22,13 @@ module mac(clk, rst, en, n1, n2, out, cp, cn);
             rp <= 0;
             rn <= 0;
         end
-        if(en & neg)
-            rn <= soma_n;
-        if(en & ~neg)
-            rp <= soma_p;
+        else
+        begin
+            if(en & neg)
+                rn <= soma_n;
+            if(en & ~neg)
+                rp <= soma_p;
+        end
     end
 
     assign out = rp - rn;

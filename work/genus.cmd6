@@ -1,0 +1,10 @@
+# Cadence Genus(TM) Synthesis Solution, Version 23.18-s043_1, built Jul 14 2026 00:16:36
+
+# Date: Thu Nov 12 16:52:31 2026
+# Host: cadmicro-el8-04.inf.ufrgs.br (x86_64 w/Linux 4.18.0-553.184.1.el8_10.x86_64) (32cores*64cpus*2physical cpus*QEMU Virtual CPU version 2.5+ 16384KB)
+# OS:   Rocky Linux 8.10 (Green Obsidian)
+
+source ../scripts/setup.tcl
+source ../scripts/syn.tcl
+write_sdc > $_OUTPUTS_PATH/${DESIGN}_best_m.sdc
+exit

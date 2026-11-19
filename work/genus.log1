@@ -1,0 +1,284 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2026 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:22:08.247185] Configured Lic search path (23.02-s006): 5280@pgmicro01.ufrgs.br
+
+Version: 23.18-s043_1, built Mon Jul 13 20:16:36 PDT 2026
+Options: -files ../scripts/setup.tcl 
+Date:    Tue Nov 10 15:22:08 2026
+Host:    cadmicro-el8-04.inf.ufrgs.br (x86_64 w/Linux 4.18.0-553.184.1.el8_10.x86_64) (32cores*64cpus*2physical cpus*QEMU Virtual CPU version 2.5+ 16384KB) (330128252KB)
+PID:     2143100
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[15:22:08.339922] Periodic Lic check successful
+[15:22:08.339938] Feature usage summary:
+[15:22:08.339938] Genus_Synthesis
+License checkout complete (0 seconds elapsed).
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (10 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (31 seconds elapsed).
+
+#@ Processing -files option
+@genus:root: 1> source ../scripts/setup.tcl
+#@ Begin verbose source ../scripts/setup.tcl
+@file(setup.tcl) 4: set DESIGN mac
+@file(setup.tcl) 5: set DATE [clock format [clock seconds] -format "%b%d-%T"]
+@file(setup.tcl) 6: set _OUTPUTS_PATH ../outputs
+@file(setup.tcl) 7: set _REPORTS_PATH ../reports
+@file(setup.tcl) 8: set _LOGS_PATH    ../logs
+@file(setup.tcl) 10: set RTL_PATH ../verilog_code
+@file(setup.tcl) 12: set CONSTR_PATH ../constr
+@file(setup.tcl) 18: read_libs { 
+	#/pdk/xfab/XC018_61_3.1.3/synopsys/xc018/MOSST/D_CELLS_MOSST_typ_1_80V_25C.lib 
+	/pdk/skywater/sky130/sram22_sky130_macros/sram22_64x24m4w8/sram22_64x24m4w8_tt_025C_1v80.lib
+}
+Error   : File error. [FILE-100] [::legacy::set_attribute]
+        : Cannot open file '#/pdk/xfab/XC018_61_3.1.3/synopsys/xc018/MOSST/D_CELLS_MOSST_typ_1_80V_25C.lib'
+        : Make sure that the file is a readable regular file and has the specified name.
+Error   : A library file does not exist. [LBR-68] [::legacy::set_attribute]
+        : File '#/pdk/xfab/XC018_61_3.1.3/synopsys/xc018/MOSST/D_CELLS_MOSST_typ_1_80V_25C.lib' could not be found. File '<none>' was the last file that was successfully read in.
+        : Make sure that the library file exists or check for a typo in the file name.
+Error   : The data value for this attribute is invalid. [TUI-24] [::legacy::set_attribute]
+        : The value '  { #/pdk/xfab/XC018_61_3.1.3/synopsys/xc018/MOSST/D_CELLS_MOSST_typ_1_80V_25C.lib }  { /pdk/skywater/sky130/sram22_sky130_macros/sram22_64x24m4w8/sram22_64x24m4w8_tt_025C_1v80.lib } ' cannot be set for attribute 'library'.
+        : To see the usage/description for this attribute, type '::legacy::set_attribute -h <attr_name> *' (in legacy UI mode) or 'help * <attr_name> -detail' (in CUI mode).
+#@ End verbose source ../scripts/setup.tcl
+1
+Encountered problems processing file: ../scripts/setup.tcl
+@genus:root: 2> source setup.tcl
+File 'setup.tcl' does not exist.
+@genus:root: 3> source ../scripts/setup.tcl
+Sourcing '../scripts/setup.tcl' (Tue Nov 10 15:24:57 -03 2026)...
+#@ Begin verbose source ../scripts/setup.tcl
+@file(setup.tcl) 4: set DESIGN mac
+@file(setup.tcl) 5: set DATE [clock format [clock seconds] -format "%b%d-%T"]
+@file(setup.tcl) 6: set _OUTPUTS_PATH ../outputs
+@file(setup.tcl) 7: set _REPORTS_PATH ../reports
+@file(setup.tcl) 8: set _LOGS_PATH    ../logs
+@file(setup.tcl) 10: set RTL_PATH ../verilog_code
+@file(setup.tcl) 12: set CONSTR_PATH ../constr
+@file(setup.tcl) 18: read_libs { 
+	/pdk/skywater/sky130/sram22_sky130_macros/sram22_64x24m4w8/sram22_64x24m4w8_tt_025C_1v80.lib
+}
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sram22_64x24m4w8_tt_025C_1v80.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+#@ End verbose source ../scripts/setup.tcl
+@genus:root: 4> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:26:05 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH $_INNOVUS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+#@ End verbose source ../scripts/syn.tcl
+can't read "_INNOVUS_PATH": no such variable
+@genus:root: 5> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:28:17 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+@file(syn.tcl) 14: set rtl_files {mac_dv2 dadda_s_7x7bits}
+@file(syn.tcl) 17: set path "../verilog_code"
+@file(syn.tcl) 20: set full_paths {}
+@file(syn.tcl) 21: foreach f $rtl_files {
+    lappend full_paths "$path/$f.v"
+}
+@file(syn.tcl) 26: read_hdl $full_paths
+    always @(posedge clk or posedge rst) begin
+                                             |
+Warning : An 'if' statement is required at the top of an always block to infer a latch or flip-flop. [VLOGPT-46]
+        : in file '../verilog_code/mac_dv2.v' on line 19, column 46.
+        : The supported syntax for asynchronous set-reset on a flop-flop is:
+    reg data_out;
+    always @(posedge clock or posedge reset)
+        if ( reset )
+            data_out = 1'b1;
+        else
+            data_out = 1'b0.
+@file(syn.tcl) 29: elaborate $DESIGN top
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+Warning : In legacy_ui mode, Genus creates a blackbox as description for a module is not found. Black boxes represent unresolved references in the design and are usually not expected. Another possible reason is, some libraries are not read and the tool could not get the content for some macros or lib_cells. [CDFG-428]
+        : A blackbox was created for instance 'p1_1' in file '../verilog_code/dadda_s_7x7bits.v' on line 29.
+        : Check the kind of module a black box is. If it is a lib_cell or a macro, check why the corresponding .lib was not read in. This could be either due to a missing or faulty file or due to an incomplete init_lib_search_path attribute value making restricting access to the missing file. If it is a module of your design, verify whether the path to this module is a part of the files you read or else check that the init_hdl_search_path attribute is not missing some paths.
+Warning : In legacy_ui mode, Genus creates a blackbox as description for a module is not found. Black boxes represent unresolved references in the design and are usually not expected. Another possible reason is, some libraries are not read and the tool could not get the content for some macros or lib_cells. [CDFG-428]
+        : A blackbox was created for instance 'p1_2' in file '../verilog_code/dadda_s_7x7bits.v' on line 30.
+Error   : Unsynthesizable Process. [CDFG-364] [elaborate]
+        : in file '../verilog_code/mac_dv2.v' on line 19.
+        : Error during elaboration.
+Info    : Unable to elaborate the design. [ELAB-4]
+        : Module 'mac' contains errors and cannot be elaborated.
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ../scripts/syn.tcl
+1
+@genus:root: 6> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:33:15 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+@file(syn.tcl) 14: set rtl_files {mac_dv2 dadda_s_7x7bits add}
+@file(syn.tcl) 17: set path "../verilog_code"
+@file(syn.tcl) 20: set full_paths {}
+@file(syn.tcl) 21: foreach f $rtl_files {
+    lappend full_paths "$path/$f.v"
+}
+@file(syn.tcl) 26: read_hdl $full_paths
+    always @(posedge clk or posedge rst) begin
+                                             |
+Warning : An 'if' statement is required at the top of an always block to infer a latch or flip-flop. [VLOGPT-46]
+        : in file '../verilog_code/mac_dv2.v' on line 19, column 46.
+@file(syn.tcl) 29: elaborate $DESIGN top
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+Error   : Unsynthesizable Process. [CDFG-364] [elaborate]
+        : in file '../verilog_code/mac_dv2.v' on line 19.
+Info    : Unable to elaborate the design. [ELAB-4]
+        : Module 'mac' contains errors and cannot be elaborated.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ../scripts/syn.tcl
+1
+@genus:root: 7> elaborate
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@genus:root: 8> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:38:15 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+@file(syn.tcl) 14: set rtl_files {mac_dv2 dadda_s_7x7bits add}
+@file(syn.tcl) 17: set path "../verilog_code"
+@file(syn.tcl) 20: set full_paths {}
+@file(syn.tcl) 21: foreach f $rtl_files {
+    lappend full_paths "$path/$f.v"
+}
+@file(syn.tcl) 26: read_hdl $full_paths
+@file(syn.tcl) 29: elaborate $DESIGN top
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mac'.
+Error   : Could not find an HDL design. [CDFG-210] [elaborate]
+        : The design is 'top'.
+        : This error may happen if you read a set of files, and you try to elaborate a design which description is not part of the files read. To fix this, check the name of the design you want to elaborate, or check if you have read all the expected RTL files.
+      flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+#@ End verbose source ../scripts/syn.tcl
+1
+@genus:root: 9> source ../scripts/syn.tcl
+Sourcing '../scripts/syn.tcl' (Tue Nov 10 15:41:33 -03 2026)...
+#@ Begin verbose source ../scripts/syn.tcl
+@file(syn.tcl) 6: foreach dir [list $_LOGS_PATH $_OUTPUTS_PATH $_REPORTS_PATH] {
+    if {![file exists $dir]} {
+        file mkdir $dir
+        puts "Creating directory $dir"
+    }
+}
+@file(syn.tcl) 14: set rtl_files {mac_dv2 dadda_s_7x7bits add}
+@file(syn.tcl) 17: set path "../verilog_code"
+@file(syn.tcl) 20: set full_paths {}
+@file(syn.tcl) 21: foreach f $rtl_files {
+    lappend full_paths "$path/$f.v"
+}
+@file(syn.tcl) 26: read_hdl $full_paths
+@file(syn.tcl) 29: elaborate $DESIGN mac
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'mac'.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'mac' from file '../verilog_code/mac_dv2.v'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'mac' with default parameters value.
+
+Fatal internal error, code 2f696364-2f72632f-3707
+
+Dumping stack trace (tid:7f4a9a029940/main thread).
+
+Operating System: linux
+Product Version: 23.18-s043_1
+Build Date: Jul 14 2026 00:16:36
+Executable: /tools/cadence/DDIEXPORT23/GENUS231/tools.lnx86/synth/bin/64bit/genus
+Startup Options: -f ../scripts/setup.tcl 
+Current Directory: /home/pedro.fleury/FLP/gpdk180_workspace/lab_217/work
+Stack trace:
+Thread 3 (Thread 0x7f4a8c373700 (LWP 2143159)):
+#0  0x00007f4aa2ebbb51 in poll () from /lib64/libc.so.6
+#1  0x000000000a6e7a6e in RedirectOutputHelperThread::helper_thread(bool) ()
+#2  0x000000000a776e1c in create_head(void*) ()
+#3  0x00007f4aa83991ca in start_thread () from /lib64/libpthread.so.0
+#4  0x00007f4aa2ec87d3 in clone () from /lib64/libc.so.6
+Thread 2 (Thread 0x7f4a979b4700 (LWP 2143116)):
+#0  0x00007f4aa83a2e20 in nanosleep () from /lib64/libpthread.so.0
+#1  0x0000000009e94561 in lic_recheck(void*) ()
+#2  0x000000000a776e1c in create_head(void*) ()
+#3  0x00007f4aa83991ca in start_thread () from /lib64/libpthread.so.0
+#4  0x00007f4aa2ec87d3 in clone () from /lib64/libc.so.6
+Thread 1 (Thread 0x7f4a9a029940 (LWP 2143100)):
+#0  0x00007f4aa83a3312 in waitpid () from /lib64/libpthread.so.0
+#1  0x000000000a777d39 in pstack_stacktrace(int, _IO_FILE*) ()
+#2  0x000000000a778743 in dump_stack_trace_low(_IO_FILE*, _IO_FILE*, unsigned long*, bool, bool) ()
+#3  0x000000000a77a4cb in sig_exit(int) ()
+#4  0x000000000a77afca in fatal_info(char*, int) ()
+#5  0x00000000013803a5 in c2g_create_gdef(DfGraph*, GBI::Gdef*&, char*&, Hasht*) ()
+#6  0x000000000138cc09 in c2g_process_graph(DfGraph*, unsigned long&, long long&, int) ()
+#7  0x000000000149a86d in XfmDfGraph::allocateDesign() ()
+#8  0x000000000171a554 in HptDfGraph::allocateDesigns() ()
+#9  0x000000000171d5ab in HptDfGraph::processDesign(HPTStruct*, HPTStruct*, Hasht*, HPTStruct*) [clone .part.0] ()
+#10 0x000000000171e004 in HptDatabase::processDesign(HPTStruct*, bool, Ident const&, bool, Hasht*, HptDfGraph*, char const*, bool) ()
+#11 0x00000000017209bb in HptDatabase::processDesigns(Ident const&, int, int, int, int, int, int, Ident const&, int, Ident const&, char const*, DList*, DList*, int, Hasht*) ()
+#12 0x0000000001847101 in hls_elaborate_one_design(Ident&, bool, char const*, DList*, DList*, bool&, Hasht*, bool) [clone .constprop.0] ()
+#13 0x00000000018575c9 in hls_elaborate(LList*, char const*, DList*, DList*, bool&, bool) ()
+#14 0x0000000001844739 in elaborate_cmd(void*, Tcl_Interp*, int, Tcl_Obj* const*) ()
+#15 0x000000000a245f3a in rc_cmd(void*, Tcl_Interp*, int, Tcl_Obj* const*) ()
+#16 0x0000000009f83128 in Tcl_EvalObjEx ()
+#17 0x000000000a02f9c4 in Tcl_RecordAndEvalObj ()
+#18 0x000000000a02fb4d in Tcl_RecordAndEval ()
+#19 0x000000000a376b41 in cleUtil::rcEditCmdLineEnd(char*) ()
+#20 0x000000000a385fed in RC_Console::cleMode::DoExecute(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, void*) ()
+#21 0x000000000a36c630 in RC_Redline::EmacsMode::AcceptLine() ()
+#22 0x000000000a370f54 in RC_Redline::ModeCommand<RC_Redline::EmacsMode>::CommandFnNoKeys(boost::function<void (RC_Redline::EmacsMode&)> const&, RC_Redline::Editor&) ()
+#23 0x000000000a374a12 in boost::detail::function::void_function_obj_invoker2<boost::_bi::bind_t<boost::_bi::unspecified, boost::function<void (RC_Redline::Editor&)>, boost::_bi::list1<boost::arg<1> > >, void, RC_Redline::Editor&, RC_Redline::KeyCombination const&>::invoke(boost::detail::function::function_buffer&, RC_Redline::Editor&, RC_Redline::KeyCombination const&) ()
+#24 0x000000000a373bd3 in RC_Redline::Command::Run(RC_Redline::Editor&, RC_Redline::KeyCombination const&) const ()
+#25 0x000000000a373445 in RC_Redline::Editor::Internals::Run(bool) ()
+#26 0x000000000a0bb1de in FileHandlerEventProc ()
+#27 0x000000000a05bfc1 in Tcl_ServiceEvent ()
+#28 0x000000000a05c2e4 in Tcl_DoOneEvent ()
+#29 0x000000000a056211 in Tcl_MainEx ()
+#30 0x000000000080469c in main ()
+
+Abnormal exit.
