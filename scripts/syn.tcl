@@ -104,9 +104,9 @@ report_port [get_db ports .name] >  $_REPORTS_PATH/${DESIGN}_post_dft_ports.rpt
 
 # Escrever netlist e SDC finais
 write_hdl  > $_OUTPUTS_PATH/${DESIGN}_netlist.v
-write_sdc -view nominal_view  > $_OUTPUTS_PATH/${DESIGN}_nom_m.sdc
-write_sdc -view worst_view  > $_OUTPUTS_PATH/${DESIGN}_wrst_m.sdc
-write_sdc -view best_view  > $_OUTPUTS_PATH/${DESIGN}_best_m.sdc
+#write_sdc -view nominal_view  > $_OUTPUTS_PATH/${DESIGN}_nom_m.sdc
+#write_sdc -view worst_view  > $_OUTPUTS_PATH/${DESIGN}_wrst_m.sdc
+write_sdc > $_OUTPUTS_PATH/${DESIGN}_best_m.sdc
 
 # Escrever arquivo LEC final
 write_do_lec -golden_design fv_map -revised_design $_OUTPUTS_PATH/${DESIGN}_netlist.v > $_OUTPUTS_PATH/${DESIGN}_fv_map_to_final.tcl
