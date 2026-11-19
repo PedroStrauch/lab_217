@@ -1,4 +1,4 @@
-module MAC_SM (clk, rst, n1, n2, out);
+module mac_sm (clk, rst, n1, n2, out);
 	parameter W = 4;
 	input clk, rst;
 	input [W-1:0] n1, n2;

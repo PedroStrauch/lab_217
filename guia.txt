@@ -23,3 +23,9 @@ Guia para usar as ferramentas instaladas:
     dadda multiplier unsigned and signed
     Baugh-Wooley unsigned and signed
 
+            1 reg   2regs
+    dadda   
+    bw      
+    drum
+
+    extras: daddas
