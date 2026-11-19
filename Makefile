@@ -5,6 +5,8 @@ SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
 VERILOG_SOURCES += $(PWD)/outputs/mac_netlist.v
+VERILOG_SOURCES += $(PWD)/verilog_code/sky130_fd_sc_hd.v
+
 # use VHDL_SOURCES for VHDL files
 
 # COCOTB_TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
