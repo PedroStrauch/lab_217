@@ -1,0 +1,9 @@
+
+VERILOG_SOURCES += $(PWD)/outputs/mac_netlist.v
+VERILOG_SOURCES += $(PWD)/verilog/sky130_fd_sc_hd.v
+VERILOG_SOURCES += $(PWD)/verilog/primitives.v
+
+
+VERILOG_SOURCES += $(PWD)/verilog_code/mac_dv2.v
+VERILOG_SOURCES += $(PWD)/verilog_code/add.v
+VERILOG_SOURCES += $(PWD)/verilog_code/dadda_s_7x7bits.v
